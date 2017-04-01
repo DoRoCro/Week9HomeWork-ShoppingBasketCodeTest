@@ -5,4 +5,13 @@ package com.codeclan.shoppingbasketcodetest;
  */
 
 class ShoppingBasket {
+    public void add(ShoppingItem cheese) {
+    }
+
+    public int itemCount() {
+    return 1;
+    }
+
+    public void remove(ShoppingItem cheese) {
+    }
 }

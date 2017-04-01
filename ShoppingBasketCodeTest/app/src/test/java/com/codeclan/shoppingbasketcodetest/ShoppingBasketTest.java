@@ -7,15 +7,16 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * Created by DRC on 01/04/2017.
+ * ShoppingBasketTest
  */
 
 public class ShoppingBasketTest {
 
-    ShoppingBasket basket;
-    ShoppingItem cheese;
-    ShoppingItem milk;
-    ShoppingItem knife;
-    ShoppingItem giftCard;
+    private ShoppingBasket basket;
+    private ShoppingItem cheese;
+    private ShoppingItem milk;
+    private ShoppingItem knife;
+    private ShoppingItem giftCard;
 
     @Before
     public void before(){
@@ -69,6 +70,18 @@ public class ShoppingBasketTest {
     }
 
     @Test
-    public void canCountManyOfTheSameItemInTheBasket(){}
+    public void canCountManyOfTheSameItemInTheBasket() {
+        basket.add(cheese);
+        basket.add(cheese);
+        basket.add(cheese);
+        basket.add(cheese);
+        assertEquals((Integer) 4, basket.count(cheese));
+    }
 
+    @Test
+    public void cannotRemoveFromNewBasket(){
+        basket.remove(cheese);
+        assertEquals((Integer) 0, basket.count(cheese));
+        assertEquals((Integer) 0, basket.itemCount());
+    }
 }

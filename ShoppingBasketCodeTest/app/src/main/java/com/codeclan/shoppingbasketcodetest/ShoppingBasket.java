@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 /**
  * Created by DRC on 01/04/2017.
+ * ShoppingBasket class for Code Test Week 9
  */
 
 class ShoppingBasket {
@@ -44,6 +45,7 @@ class ShoppingBasket {
             this.items.put(item, currentCount - 1);
         }
         else {
+            // option to throw exception, but silent for now.
             return;
         }
     }
@@ -54,7 +56,10 @@ class ShoppingBasket {
     }
 
     public boolean contains(ShoppingItem item){
-        return this.items.containsKey(item);
+        // NB - may be zero of this item if all have been removed, but will return true.
+        return  (this.items.containsKey(item)) &&
+                (this.items.get(item) > 0 );
+
     }
 
     public Integer count(ShoppingItem item) {

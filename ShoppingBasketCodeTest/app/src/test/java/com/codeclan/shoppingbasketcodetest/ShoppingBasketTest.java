@@ -12,7 +12,9 @@ public class ShoppingBasketTest {
     ShoppingBasket basket;
 
     @Before
-    public void before(){}
+    public void before(){
+        basket = new ShoppingBasket();
+    }
 
     @Test
     public void canAddItemToBasket(){}

@@ -51,7 +51,21 @@ public class ShoppingBasketTest {
         assertEquals((Integer) 4, basket.itemCount());
         basket.empty();
         assertEquals((Integer) 0, basket.itemCount());
+    }
 
+    @Test
+    public void has1CheeseAfterAdding2Removing1FromBasket(){
+        basket.add(cheese);
+        basket.add(cheese);
+        basket.remove((cheese));
+        assertEquals((Integer)1, basket.count(cheese));
+    }
+
+    @Test
+    public void has0CheeseAfterAdding1Removing1FromBasket(){
+        basket.add(cheese);
+        basket.remove((cheese));
+        assertEquals((Integer)0, basket.count(cheese));
     }
 
     @Test

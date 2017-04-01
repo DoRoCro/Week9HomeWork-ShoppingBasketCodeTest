@@ -6,5 +6,5 @@ package com.codeclan.shoppingbasketcodetest;
 
 interface IOffer {
     public Class appliesTo();
-    public Integer saving(Object object);
+    public Integer saving(ShoppingBasket basket);
 }

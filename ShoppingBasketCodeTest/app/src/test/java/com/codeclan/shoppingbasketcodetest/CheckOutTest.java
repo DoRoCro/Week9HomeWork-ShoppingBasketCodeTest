@@ -3,6 +3,8 @@ package com.codeclan.shoppingbasketcodetest;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -17,6 +19,8 @@ public class CheckOutTest {
     private ShoppingItem milk;
     private ShoppingItem knife;
     private ShoppingItem giftCard;
+    private BuyOneGetOneFree offerCheese;
+    private ArrayList<IOffer> offers;
 
     @Before
     public void before(){
@@ -29,13 +33,46 @@ public class CheckOutTest {
         basket.add(milk);
         basket.add(knife);
         basket.add(giftCard);
+        offerCheese = new BuyOneGetOneFree(cheese);
+        offers = new ArrayList<IOffer>();
 
     }
 
     @Test
     public void emptyBasketCalculatesZeroBill(){
-        checkout = new Checkout();
-        assertEquals((Integer)0, checkout.bill());
+        checkout = new Checkout(new ShoppingBasket());
+        assertEquals((Integer)0, checkout.noDiscountsBill());
+    }
+
+    @Test
+    public void canCalculateBillNoOffers(){
+        checkout = new Checkout(basket);
+        assertEquals((Integer)(125+87+650+1000), checkout.noDiscountsBill());
+    }
+
+    @Test
+    public void canCalculateBillWithBogof(){
+        basket.add(cheese);
+        offers.add(offerCheese);
+        checkout = new Checkout(basket, offers);
+        assertEquals((Integer)(125+87+650+1000+125), checkout.noDiscountsBill());
+        assertEquals((Integer)(125+87+650+1000), checkout.withDiscountsBill());
+        basket.add(cheese);
+        assertEquals((Integer)(125+87+650+1000+125), checkout.withDiscountsBill());
+        basket.add(cheese);
+        assertEquals((Integer)(125+87+650+1000+125), checkout.withDiscountsBill());
+    }
+
+    @Test
+    public void canCalculateBillWith2Bogofs() {
+        basket.add(cheese);
+        offers.add(offerCheese);
+        offers.add(new BuyOneGetOneFree(giftCard));
+        checkout = new Checkout(basket, offers);
+        assertEquals((Integer)(125+87+650+1000+125), checkout.noDiscountsBill());
+        basket.add(giftCard);
+        assertEquals((Integer)(125+87+650+1000+125+1000), checkout.noDiscountsBill());
+        assertEquals((Integer)(125+87+650+1000), checkout.withDiscountsBill());
     }
 
 }

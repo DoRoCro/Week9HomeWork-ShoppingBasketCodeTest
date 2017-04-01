@@ -62,4 +62,13 @@ public class BuyOneGetOneFreeTest {
         basket.add(cheese);
         assertEquals((Integer)250, offerCheese.saving(basket));
     }
+
+    @Test
+    public void canGetNoSavingsForNonBogofItem(){
+        ShoppingItem milk = new ShoppingItem("1pt Semi-Skimmed Milk", 87);
+        basket.add(milk);
+        basket.add(milk);
+        assertEquals((Integer) 0 , offerCheese.saving(basket));
+    }
+
 }

@@ -30,16 +30,16 @@ public class ShoppingBasketTest {
     @Test
     public void canAddItemToBasket(){
         basket.add(cheese);
-        assertEquals(1, basket.itemCount());
+        assertEquals((Integer) 1, basket.itemCount());
     }
 
     @Test
     public void canRemoveItemFromBasket() {
         basket.add(cheese);
         basket.add(milk);
-        assertEquals(2, basket.itemCount());
+        assertEquals((Integer)2, basket.itemCount());
         basket.remove(cheese);
-        assertEquals(1, basket.itemCount());
+        assertEquals((Integer)1, basket.itemCount());
     }
 
     @Test

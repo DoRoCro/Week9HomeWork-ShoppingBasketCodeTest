@@ -30,9 +30,19 @@ class Checkout {
 
     public Integer withDiscountsBill() {
         Integer bill = this.noDiscountsBill();
+        // apply item discounts first
         for(IOffer offer : this.offers){
-            bill -= offer.saving(this.basket);
+            if(offer.appliesTo() == ShoppingItem.class){
+                bill -= offer.saving(this.basket);
+            }
         }
+        // apply basket discounts after item offers
+        for(IOffer offer : this.offers){
+            if(offer.appliesTo() == ShoppingBasket.class){
+                bill -= offer.saving(this.basket);
+            }
+        }
+
         return bill;
     }
 }

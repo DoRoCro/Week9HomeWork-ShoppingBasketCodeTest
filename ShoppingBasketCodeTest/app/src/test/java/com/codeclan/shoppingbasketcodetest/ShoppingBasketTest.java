@@ -43,7 +43,16 @@ public class ShoppingBasketTest {
     }
 
     @Test
-    public void canEmptyBasket(){}
+    public void canEmptyBasket(){
+        basket.add(cheese);
+        basket.add(milk);
+        basket.add(knife);
+        basket.add(giftCard);
+        assertEquals((Integer) 4, basket.itemCount());
+        basket.empty();
+        assertEquals((Integer) 0, basket.itemCount());
+
+    }
 
     @Test
     public void canCountManyOfTheSameItemInTheBasket(){}

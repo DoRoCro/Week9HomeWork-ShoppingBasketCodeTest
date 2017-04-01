@@ -33,4 +33,9 @@ class ShoppingBasket {
     public void remove(ShoppingItem cheese) {
         this.itemsCount --;
     }
+
+    public void empty() {
+        this.items.clear();
+        this.itemsCount = 0;
+    }
 }

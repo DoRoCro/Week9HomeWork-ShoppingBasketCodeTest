@@ -33,7 +33,7 @@ public class CheckOutTest {
     }
 
     @Test
-    public void emptyBasketCalculateBill(){
+    public void emptyBasketCalculatesZeroBill(){
         checkout = new Checkout();
         assertEquals((Integer)0, checkout.bill());
     }

@@ -41,13 +41,13 @@ public class CheckOutTest {
     @Test
     public void emptyBasketCalculatesZeroBill(){
         checkout = new Checkout(new ShoppingBasket());
-        assertEquals((Integer)0, checkout.noDiscountsBill());
+        assertEquals((Integer)0, checkout.getBillBeforeDiscounts());
     }
 
     @Test
     public void canCalculateBillNoOffers(){
         checkout = new Checkout(basket);
-        assertEquals((Integer)(125+87+650+1000), checkout.noDiscountsBill());
+        assertEquals((Integer)(125+87+650+1000), checkout.getBillBeforeDiscounts());
     }
 
     @Test
@@ -55,12 +55,14 @@ public class CheckOutTest {
         basket.add(cheese);
         offers.add(offerCheese);
         checkout = new Checkout(basket, offers);
-        assertEquals((Integer)(125+87+650+1000+125), checkout.noDiscountsBill());
-        assertEquals((Integer)(125+87+650+1000), checkout.withDiscountsBill());
+        assertEquals((Integer)(125+87+650+1000+125), checkout.getBillBeforeDiscounts());
+        assertEquals((Integer)(125+87+650+1000), checkout.getBillAfterItemDiscounts());
         basket.add(cheese);
-        assertEquals((Integer)(125+87+650+1000+125), checkout.withDiscountsBill());
+        checkout = new Checkout(basket, offers);
+        assertEquals((Integer)(125+87+650+1000+125), checkout.getBillAfterItemDiscounts());
         basket.add(cheese);
-        assertEquals((Integer)(125+87+650+1000+125), checkout.withDiscountsBill());
+        checkout = new Checkout(basket, offers);
+        assertEquals((Integer)(125+87+650+1000+125), checkout.getBillAfterItemDiscounts());
     }
 
     @Test
@@ -68,11 +70,10 @@ public class CheckOutTest {
         basket.add(cheese);
         offers.add(offerCheese);
         offers.add(new BuyOneGetOneFree(giftCard));
-        checkout = new Checkout(basket, offers);
-        assertEquals((Integer)(125+87+650+1000+125), checkout.noDiscountsBill());
         basket.add(giftCard);
-        assertEquals((Integer)(125+87+650+1000+125+1000), checkout.noDiscountsBill());
-        assertEquals((Integer)(125+87+650+1000), checkout.withDiscountsBill());
+        checkout = new Checkout(basket, offers);
+        assertEquals((Integer)(125+87+650+1000+125+1000), checkout.getBillBeforeDiscounts());
+        assertEquals((Integer)(125+87+650+1000), checkout.getBillAfterItemDiscounts());
     }
 
 }

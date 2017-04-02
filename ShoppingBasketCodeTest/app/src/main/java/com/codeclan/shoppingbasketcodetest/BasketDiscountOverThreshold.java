@@ -20,7 +20,9 @@ class BasketDiscountOverThreshold implements IOffer{
     }
 
     @Override
-    public Integer saving(ShoppingBasket basket) {
-        return 200;
+    public Integer saving(Checkout checkout) {
+        if( checkout.getBillAfterItemDiscounts() >= threshold)
+            return Math.round(checkout.getBillAfterItemDiscounts().floatValue() * discountPercent / 100f);
+        else return 0;
     }
 }

@@ -20,8 +20,8 @@ public class BuyOneGetOneFree implements IOffer {
     }
 
     @Override
-    public Integer saving(ShoppingBasket basket) {
-        int numberDiscounts =  basket.count(this.bogofItem)/ 2;
+    public Integer saving(Checkout checkout) {
+        int numberDiscounts =  checkout.getBasket().count(this.bogofItem)/ 2;
         return numberDiscounts * this.bogofItem.getPrice();
     }
 

@@ -15,7 +15,7 @@ class ShoppingBasket {
     // To count items in basket need to sum values in HashMap vs. using size of ArrayList, or maintain a count.
     // This implementation uses HashMap and maintains a count, so may not be thread safe.
 
-    public HashMap<ShoppingItem, Integer> getItems() {
+    HashMap<ShoppingItem, Integer> getItems() {
         return items;
     }
 

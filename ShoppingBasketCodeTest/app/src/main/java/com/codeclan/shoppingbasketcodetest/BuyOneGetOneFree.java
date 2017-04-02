@@ -5,7 +5,7 @@ package com.codeclan.shoppingbasketcodetest;
  *
  */
 
-public class BuyOneGetOneFree implements IOffer {
+class BuyOneGetOneFree implements IOffer {
     // Design choice: either
     //    have one instance per item under offer,
     // or
@@ -25,7 +25,7 @@ public class BuyOneGetOneFree implements IOffer {
         return numberDiscounts * this.bogofItem.getPrice();
     }
 
-    public BuyOneGetOneFree(ShoppingItem item){
+    BuyOneGetOneFree(ShoppingItem item){
         this.bogofItem = item;
     }
 }

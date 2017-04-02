@@ -121,6 +121,15 @@ public class CheckOutTest {
         assertEquals((Integer) bill, checkout.getBillAfterCardDiscounts());
     }
 
+    @Test
+    public void testEffectOfRepeatedBogofs() throws Exception {
+        // multiply defined BOGOFs accumulate, i.e. if defined twice, will double discount.
+        basket.add(cheese);
+        offers.add(offerCheese);
+        offers.add(offerCheese);
+        checkout = new Checkout(basket, offers);
+        assertEquals((Integer)(125+87+650+1000+125), checkout.getBillBeforeDiscounts());
+        assertEquals((Integer)(125+87+650+1000-125), checkout.getBillAfterItemDiscounts());
 
-
+    }
 }
